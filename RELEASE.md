@@ -1,4 +1,4 @@
-# CDL Windows UWP
+# Wacom Ink SDK for devices - Windows UWP
 
 ## Version 1.0.1
 
