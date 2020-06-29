@@ -13,7 +13,7 @@ Download the SDK from https://developer.wacom.com/developer-dashboard
 
 * login using your Wacom ID
 * Select **Downloads for devices**
-* Download **CDL for Windows 10 (UWP)**
+* Download **Wacom Ink SDK for devices for Windows 10 (UWP)**
 * Accept the End User License Agreement to use the SDK
 
 You will also need the WILL SDK for ink:
