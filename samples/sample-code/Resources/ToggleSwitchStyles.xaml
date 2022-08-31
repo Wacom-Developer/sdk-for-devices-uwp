@@ -1,0 +1,171 @@
+﻿<ResourceDictionary
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:Borders="clr-namespace:ToggleSwitch.Borders;assembly=ToggleSwitch" 
+     xmlns:ToggleSwitch="clr-namespace:ToggleSwitch;assembly=ToggleSwitch" 
+     xmlns:Utils="clr-namespace:ToggleSwitch.Utils;assembly=ToggleSwitch"
+     >
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ToggleSwitch;component/Themes/Generic.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <ControlTemplate x:Key="EngravedContentTemplate" TargetType="ContentControl">
+        <TextBlock 
+                        Cursor="{TemplateBinding Cursor}" 
+                        Text="{TemplateBinding Content}" 
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                        Margin="{TemplateBinding Padding}" 
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                        Foreground="{TemplateBinding Foreground}" 
+                        FontFamily="{TemplateBinding FontFamily}" 
+                        FontSize="{TemplateBinding FontSize}" 
+                        FontWeight="{TemplateBinding FontWeight}" 
+                        FontStyle="{TemplateBinding FontStyle}" 
+                        Focusable="False" />
+    </ControlTemplate>
+
+
+    <ControlTemplate x:Key="SafariThumbControlTemplate" TargetType="Thumb">
+        <Grid Background="Transparent">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" To="0.05" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundAnimation"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" To="0.25" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundAnimation"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DisabledVisualElement"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="FocusStates">
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" To="0.05" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualElement"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unfocused"/>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="CheckStates">
+                    <VisualState x:Name="Unchecked"/>
+                    <VisualState x:Name="Checked"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Borders:OuterGlowBorder OuterGlowSize="4" OuterGlowOpacity="0.15" BorderThickness="0" OuterGlowColor="Black" Background="Transparent" CornerRadius="2" ShadowCornerRadius="4" IsTabStop="False" >
+                <Grid>
+                    <Borders:ClippingBorder x:Name="Background" BorderBrush="#FF656565" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" IsTabStop="False" Background="{TemplateBinding Background}"/>
+                    <Borders:ClippingBorder x:Name="BackgroundAnimation" Background="Black" Opacity="0" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Black" CornerRadius="2" IsTabStop="False"/>
+                    <Rectangle x:Name="DisabledVisualElement" Fill="White" IsHitTestVisible="false" Opacity="0" RadiusY="2" RadiusX="2"/>
+                    <Rectangle x:Name="FocusVisualElement" IsHitTestVisible="false" Margin="1" Opacity="0" RadiusY="2" RadiusX="2" StrokeThickness="1"/>
+                </Grid>
+            </Borders:OuterGlowBorder>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="SafariSwitchStyle" TargetType="ToggleSwitch:HorizontalToggleSwitch">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="12"/>
+        <Setter Property="BorderBrush" Value="#FF6C6C6C"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="0,4"/>
+        <Setter Property="UncheckedForeground" Value="#FF3C3C3C"/>
+        <Setter Property="CheckedForeground" Value="#FF3C3C3C" />
+<!--        <Setter Property="FontSize" Value="12" /> -->
+        <Setter Property="ThumbSize" Value="30" />
+        <Setter Property="ContentTemplate" Value="{StaticResource EngravedContentTemplate}" />
+        <Setter Property="ThumbTemplate" Value="{StaticResource HorizontalThumbTemplate}"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF656565" Offset="0"/>
+                    <GradientStop Color="#FFA5A5A5" Offset="1"/>
+                    <GradientStop Color="#FF797979" Offset="0.095"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ThumbBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE1E1E1" Offset="1"/>
+                    <GradientStop Color="#FFFBFBFB"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleSwitch:HorizontalToggleSwitch">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="DisabledOverlay">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.10" To="Unchecked"/>
+                                    <VisualTransition GeneratedDuration="0:0:0.10" To="Checked"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Checked"/>
+                                <VisualState x:Name="Unchecked"/>
+                                <VisualState x:Name="DraggingChecked"/>
+                                <VisualState x:Name="DraggingUnchecked"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Utils:ActualSizePropertyProxy x:Name="ActualSizeProxy" Element="{Binding Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" IsHitTestVisible="False"/>
+                        <ContentControl x:Name="OffLabel" 
+                                    Content="{TemplateBinding UncheckedContent}" 
+                                    HorizontalContentAlignment="Center" 
+                                    VerticalContentAlignment="Center"
+                                    Template="{TemplateBinding ContentTemplate}"
+                                    Foreground="{TemplateBinding UncheckedForeground}" IsTabStop="False" Padding="0,0,6,0" FontWeight="{TemplateBinding FontWeight}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" Cursor="Hand" VerticalAlignment="Center" FontStyle="{TemplateBinding FontStyle}" Focusable="False" />
+                        <Borders:ClippingBorder x:Name="SwitchRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" IsTabStop="False" Grid.Column="1" Background="{TemplateBinding Background}" Cursor="Hand" >
+                            <Canvas x:Name="SwitchTrack" Cursor="Hand" Height="{TemplateBinding Height}" Margin="0,-1,0,0">
+                                <Thumb x:Name="SwitchThumb" 
+                                            Background="{TemplateBinding ThumbBrush}" 
+                                            Template="{StaticResource SafariThumbControlTemplate}" 
+                                            Cursor="Hand" 
+                                            Height="{Binding ActualHeightValue, ElementName=ActualSizeProxy}" 
+                                            Width="{TemplateBinding ThumbSize}"
+                                            HorizontalAlignment="Left" IsTabStop="False"/>
+                            </Canvas>
+                        </Borders:ClippingBorder>
+                        <ContentControl x:Name="OnLabel" 
+                                    Content="{TemplateBinding CheckedContent}"
+                                    HorizontalContentAlignment="Center" 
+                                    VerticalContentAlignment="Center"
+                                    Template="{TemplateBinding ContentTemplate}" 
+                                    Foreground="{TemplateBinding CheckedForeground}" IsTabStop="False" Grid.Column="2" Padding="6,0,0,0" FontWeight="{TemplateBinding FontWeight}"  FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" Cursor="Hand" VerticalAlignment="Center" FontStyle="{TemplateBinding FontStyle}" Focusable="False"/>
+                        <Border x:Name="DisabledOverlay" Background="#AAEEEEEE" Visibility="Collapsed" CornerRadius="4" Height="10" Grid.Column="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,435 @@
+﻿<Window x:Class="Demo.WPF.DeviceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo.WPF"
+        xmlns:ToggleSwitch="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        mc:Ignorable="d"
+        Title="DeviceWindow" Height="500" Width="800"
+        ResizeMode="CanMinimize">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Label VerticalAlignment="Center" Content="Status:"/>
+            <TextBlock VerticalAlignment="Center" Text="{Binding DeviceStatus}"/>
+        </StackPanel>
+        <!--
+        <StatusBar DockPanel.Dock="Bottom">
+        </StatusBar>
+        -->
+        <TabControl>
+            <TabItem Header="DeviceInfo">
+                <Grid Margin="10,10,10,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Content="Id"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding DeviceInfo_Id}"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="Transport"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding DeviceInfo_TransportProtocol}"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="DeviceModel"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="{Binding DeviceInfo_DeviceModel}"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Content="DeviceName"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Text="{Binding DeviceInfo_DeviceName}"/>
+
+                    <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Vertical" VerticalAlignment="Top">
+                        <Label VerticalAlignment="Top" Content="Stream"/>
+                        <Button Content="Write To File..." Width="80" Click="DeviceInfo_Stream_Click"/>
+                    </StackPanel>
+                    <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Consolas" FontSize="8" Text="{Binding DeviceInfo_Stream}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Properties" Name="tabProperties">
+                <ListView ItemsSource="{Binding DeviceWindow_DeviceProperties}">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Desktop Display" Name="tabDesktopDisplay">
+                <Grid Margin="10,10,10,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" VerticalAlignment="Center" Content="Integrated"/>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding DesktopDisplay_IsIntegrated}" Grid.ColumnSpan="2"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="Id"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding DesktopDisplay_Id}" Grid.ColumnSpan="2"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="Screen Pixels"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding DesktopDisplay_ScreenPixels}" Grid.ColumnSpan="2"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Content="Mapped Pixels"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding DesktopDisplay_MappedPixels}" Grid.ColumnSpan="2"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Grid.ColumnSpan="3" Content="Track Cursor"/>
+                    <ToggleSwitch:HorizontalToggleSwitch Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" CheckedContent="ON" UncheckedContent="OFF" Style="{StaticResource SafariSwitchStyle}" IsChecked="{Binding DesktopDisplay_TrackCursor, Mode=TwoWay}" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Discrete Display" Name="tabDiscreteDisplay">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" VerticalAlignment="Center" Content="Size (pixels)"/>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding DiscreteDisplay_WidthAndHeight}" Grid.ColumnSpan="3"/>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="Pixel Format"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding DiscreteDisplay_PixelFormat}" Grid.ColumnSpan="3"/>
+                    <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="Supports Inking"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="{Binding DiscreteDisplay_SupportsInking}" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Content="Area Update"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Text="{Binding DiscreteDisplay_SupportsAreaUpdate}" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Content="Is Inking"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Text="{Binding DiscreteDisplay_IsInking}" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Content="Ink Colour"/>
+                    <StackPanel Grid.Column="1" Grid.Row="5"  Orientation="Horizontal" Grid.ColumnSpan="3" Name="spInkColor">
+                        <Label Content="R"/>
+                        <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_InkColor_Red, Mode=TwoWay}"/>
+                        <Label Content="G"/>
+                        <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_InkColor_Green, Mode=TwoWay}"/>
+                        <Label Content="B"/>
+                        <TextBox Width="50"  Height="20" Text="{Binding DiscreteDisplay_InkColor_Blue, Mode=TwoWay}"/>
+                    </StackPanel>
+
+                    <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Content="Inking"/>
+                    <ToggleSwitch:HorizontalToggleSwitch Grid.Column="1" Grid.Row="6" Width="150"  HorizontalAlignment="Left" CheckedContent="Enable" UncheckedContent="Disable" Style="{StaticResource SafariSwitchStyle}" IsChecked="{Binding DiscreteDisplay_Inking, Mode=TwoWay}" />
+
+                    <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Content="Clear"/>
+                    <StackPanel Grid.Column="1" Grid.Row="7"  Orientation="Horizontal" Grid.ColumnSpan="3" VerticalAlignment="Center">
+                        <Button Content="Clear" Width="80" HorizontalAlignment="Left" Margin="0,5" Click="DiscreteDisplay_Clear_Click"/>
+                        <StackPanel Orientation="Horizontal" Name="spBackgroundColor">
+                            <Label Content="R"/>
+                            <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_ClearColor_Red, Mode=TwoWay}"/>
+                            <Label Content="G"/>
+                            <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_ClearColor_Green, Mode=TwoWay}"/>
+                            <Label Content="B"/>
+                            <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_ClearColor_Blue, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" Content="Draw Image"/>
+                    <StackPanel Grid.Column="1" Grid.Row="8" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Open..." Width="80" HorizontalAlignment="Left" Margin="0,5" Click="DiscreteDisplay_DrawImage_Open"/>
+                            <Button Content="Draw" Width="80" HorizontalAlignment="Left" Margin="10,5" Click="DiscreteDisplay_DrawImage_Click"/>
+                            <Label Content="Image Size:"/>
+                            <TextBlock Width="75" Height="20" Text="{Binding DiscreteDisplay_ImageSize}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Image Area: X"/>
+                            <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_ImageArea_X, Mode=TwoWay}"/>
+                            <Label Content="Y"/>
+                            <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_ImageArea_Y, Mode=TwoWay}"/>
+                            <Label Content="W"/>
+                            <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_ImageArea_W, Mode=TwoWay}"/>
+                            <Label Content="H"/>
+                            <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_ImageArea_H, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Grid.Row="6"  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Name="spDiscreteDisplay_Area_Inking">
+                        <RadioButton Content="Full screen" IsChecked="{Binding DiscreteDisplay_Inking_Area_Inking[0]}" GroupName="rbDiscreteDisplay_Area_Inking"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Content="Area" IsChecked="{Binding DiscreteDisplay_Inking_Area_Inking[1]}" Name="rbDiscreteDisplay_Area_Inking" GroupName="rbDiscreteDisplay_Area_Inking" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsChecked, ElementName=rbDiscreteDisplay_Area_Inking}" VerticalAlignment="Top">
+                                <Label Content="X"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_X_Inking, Mode=TwoWay}"/>
+                                <Label Content="Y"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_Y_Inking, Mode=TwoWay}"/>
+                                <Label Content="W"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_W_Inking, Mode=TwoWay}"/>
+                                <Label Content="H"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_H_Inking, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Grid.Row="7"  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Name="spDiscreteDisplay_Area_Clear">
+                        <RadioButton Content="Full screen" IsChecked="{Binding DiscreteDisplay_Inking_Area_Clear[0]}" GroupName="rbDiscreteDisplay_Area_Clear"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Content="Area" IsChecked="{Binding DiscreteDisplay_Inking_Area_Clear[1]}" Name="rbDiscreteDisplay_Area_Clear" GroupName="rbDiscreteDisplay_Area_Clear" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsChecked, ElementName=rbDiscreteDisplay_Area_Clear}" VerticalAlignment="Top">
+                                <Label Content="X"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_X_Clear, Mode=TwoWay}"/>
+                                <Label Content="Y"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_Y_Clear, Mode=TwoWay}"/>
+                                <Label Content="W"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_W_Clear, Mode=TwoWay}"/>
+                                <Label Content="H"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_H_Clear, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Grid.Row="8"  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Name="spDiscreteDisplay_Area_Draw">
+                        <RadioButton Content="Full screen" IsChecked="{Binding DiscreteDisplay_Inking_Area_Draw[0]}" GroupName="rbDiscreteDisplay_Area_Draw"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Content="Area" IsChecked="{Binding DiscreteDisplay_Inking_Area_Draw[1]}" Name="rbDiscreteDisplay_Area_Draw" GroupName="rbDiscreteDisplay_Area_Draw" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsChecked, ElementName=rbDiscreteDisplay_Area_Draw}" VerticalAlignment="Top">
+                                <Label Content="X"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_X_Draw, Mode=TwoWay}"/>
+                                <Label Content="Y"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_Y_Draw, Mode=TwoWay}"/>
+                                <Label Content="W"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_W_Draw, Mode=TwoWay}"/>
+                                <Label Content="H"/>
+                                <TextBox Width="50" Height="20" Text="{Binding DiscreteDisplay_Area_H_Draw, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="RealTime Ink" Name="tabRealTimeInk">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Content="Service"/>
+                    <ToggleSwitch:HorizontalToggleSwitch Grid.Column="1" Grid.Row="0" Width="150"  HorizontalAlignment="Left" CheckedContent="Start" UncheckedContent="Stop" Style="{StaticResource SafariSwitchStyle}" IsChecked="{Binding RealTimeInk_StartStop, Mode=TwoWay}" />
+
+                    <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="IsStarted"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding RealTimeInk_IsStarted}"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="Transform Matrix"/>
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="50" Margin="0,5" Text="{Binding RealTimeInk_Transform_M11}"/>
+                            <TextBox Width="50" Margin="10,5" Text="{Binding RealTimeInk_Transform_M12}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="50" Margin="0,5" Text="{Binding RealTimeInk_Transform_M21}"/>
+                            <TextBox Width="50" Margin="10,5" Text="{Binding RealTimeInk_Transform_M22}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="50" Margin="0,5" Text="{Binding RealTimeInk_Transform_M31}"/>
+                            <TextBox Width="50" Margin="10,5" Text="{Binding RealTimeInk_Transform_M32}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Content="Point Data"/>
+                    <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" Content="Count:"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding RealTimeInk_Count}" Width="50"/>
+                        <Button Content="Clear" Width="50" Margin="10,5" Click="RealTimeInk_PenData_Clear" IsEnabled="{Binding RealTimeInk_Count}"/>
+                        <Button Content="Save..." Width="50" Margin="5,5" Click="RealTimeInk_PenData_Save" IsEnabled="{Binding RealTimeInk_Count}"/>
+                    </StackPanel>
+
+                    <GroupBox Header="RealTimePointReceived" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Content="Timestamp"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Binding RealTimeInk_Timestamp}"/>
+
+                            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="Point"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding RealTimeInk_Point}"/>
+
+                            <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="Phase"/>
+                            <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="{Binding RealTimeInk_Phase}"/>
+
+                            <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Content="Pressure"  IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_Pressure}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Name="tbRealTimeInk_Pressure" IsEnabled="False" Text="{Binding RealTimeInk_Pressure}"/>
+
+                            <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Content="PointDisplay" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_PointDisplay}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Name="tbRealTimeInk_PointDisplay" IsEnabled="False" Text="{Binding RealTimeInk_PointDisplay}"/>
+
+                            <Label Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Content="PointRaw" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_PointRaw}"/>
+                            <TextBlock Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Name="tbRealTimeInk_PointRaw" IsEnabled="False" Text="{Binding RealTimeInk_PointRaw}"/>
+
+                            <Label Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Content="PressureRaw" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_PressureRaw}"/>
+                            <TextBlock Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" Name="tbRealTimeInk_PressureRaw" IsEnabled="False" Text="{Binding RealTimeInk_PressureRaw}"/>
+
+                            <Label Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Content="TimestampRaw" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_TimestampRaw}"/>
+                            <TextBlock Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" Name="tbRealTimeInk_TimestampRaw" IsEnabled="False" Text="{Binding RealTimeInk_TimestampRaw}"/>
+
+                            <Label Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Content="Sequence" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_Sequence}"/>
+                            <TextBlock Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" Name="tbRealTimeInk_Sequence" IsEnabled="False" Text="{Binding RealTimeInk_Sequence}"/>
+
+                            <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Content="Rotation" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_Rotation}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Name="tbRealTimeInk_Rotation" IsEnabled="False" Text="{Binding RealTimeInk_Rotation}"/>
+
+                            <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Content="Azimuth" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_Azimuth}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Name="tbRealTimeInk_Azimuth" IsEnabled="False" Text="{Binding RealTimeInk_Azimuth}"/>
+
+                            <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Content="Altitude" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_Altitude}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Name="tbRealTimeInk_Altitude" IsEnabled="False" Text="{Binding RealTimeInk_Altitude}"/>
+
+                            <Label Grid.Column="2" Grid.Row="5" Grid.RowSpan="7" VerticalAlignment="Center" Content="Tilt" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_Tilt}"/>
+                            <TextBlock Grid.Column="3" Grid.Row="5" Grid.RowSpan="7" VerticalAlignment="Center" Name="tbRealTimeInk_Tilt" IsEnabled="False" Text="{Binding RealTimeInk_Tilt}"/>
+
+                            <Label Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" Content="PenId" IsEnabled="{Binding IsEnabled, ElementName=tbRealTimeInk_PenId}"/>
+                            <TextBlock Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" Name="tbRealTimeInk_PenId" IsEnabled="False" Text="{Binding RealTimeInk_PenId}"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Encryption" Name="tabEncryption">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Content="Service"/>
+                    <ToggleSwitch:HorizontalToggleSwitch Grid.Column="1" Grid.Row="0" Width="150"  HorizontalAlignment="Left" CheckedContent="Start" UncheckedContent="Stop" Style="{StaticResource SafariSwitchStyle}" IsChecked="{Binding Encryption_StartStop, Mode=TwoWay}" />
+
+                    <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="IsStarted"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding Encryption_IsStarted}"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="Cipher Suite"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="{Binding Encryption_CipherSuite}"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="File Transfer" Name="tabFileTransfer">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Content="Service"/>
+                    <ToggleSwitch:HorizontalToggleSwitch Grid.Column="1" Grid.Row="0" Width="150"  HorizontalAlignment="Left" CheckedContent="Start" UncheckedContent="Stop" Style="{StaticResource SafariSwitchStyle}" IsChecked="{Binding FileTransfer_StartStop, Mode=TwoWay}" />
+
+                    <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Content="IsStarted"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding FileTransfer_IsStarted}"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="Transform Matrix"/>
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="50" Margin="0,5" Text="{Binding FileTransfer_Transform_M11}"/>
+                            <TextBox Width="50" Margin="10,5" Text="{Binding FileTransfer_Transform_M12}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="50" Margin="0,5" Text="{Binding FileTransfer_Transform_M21}"/>
+                            <TextBox Width="50" Margin="10,5" Text="{Binding FileTransfer_Transform_M22}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="50" Margin="0,5" Text="{Binding FileTransfer_Transform_M31}"/>
+                            <TextBox Width="50" Margin="10,5" Text="{Binding FileTransfer_Transform_M32}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Content="Sync Interval"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Text="{Binding FileTransfer_SyncInterval}" Width="50" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Content="Service Status"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Text="{Binding FileTransfer_Message}" HorizontalAlignment="Left"/>
+
+                    <Grid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="10,10,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Document List" />
+                        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding FileTransfer_InkDocuments}" SelectionChanged="FileTransfer_DocumentSelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Description}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Document View"/>
+                        <TreeView Grid.Column="1" Grid.Row="1" Name="tvFileTransfer_Document" ItemsSource="{Binding FileTransfer_InkDocument}">
+                            <TreeView.ItemTemplate>
+                                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                    <TextBlock Text="{Binding Text}"/>
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

@@ -1,0 +1,58 @@
+﻿<Window x:Class="Demo.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo.WPF"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="Device List" Height="240" Width="400">
+    <TabControl>
+        <TabItem Header="New Connection">
+           <Grid Margin="10,10,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="42"/>
+                </Grid.RowDefinitions>
+                <ListView Margin="0,0,0,0" Name="lvConnectionList" ItemsSource="{Binding ConnectionList}" MouseDoubleClick="lvConnectionList_MouseDoubleClick">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Transport">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                            <Image Source="{Binding TransportImage}" Height="{Binding ActualHeight, ElementName=tbTextMeasurement}" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,3"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Name">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                            <TextBlock Text="{Binding DeviceName}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                                
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button Content="Connect" Grid.Row="1" Width="60" Margin="0,10" Click="Connect_OnClick"/>
+                <TextBlock Name="tbTextMeasurement" Text="X" Visibility="Hidden" VerticalAlignment="Top"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="From File">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Load stream"/>
+                <Button Grid.Column="1" Grid.Row="0" Content="Load..." Width="80" HorizontalAlignment="Left" Click="LoadStream_Click"/>
+            </Grid> 
+        </TabItem>
+    </TabControl>
+
+</Window>
