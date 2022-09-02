@@ -92,7 +92,8 @@ Install Visual Studio Community 2019 Preview with .NET Core and the .NET
 Framework Developer Pack. 
 
 - Download the sample e.g. to C:\CDL
-- copy the sdk NuGet files to the NuGet folder. NB: as the location of the NuGet folder is set within the NuGet Package Manager, its location is up to user preference. 
+- copy the sdk NuGet files to the NuGet folder. 
+  **NB: as the location of the NuGet folder is set within the NuGet Package Manager, its location is up to user preference. By default, it is the nuget folder within the VS sample folder.**
 - Open Demo.WPF.csproj in Visual Studio. Add the NuGet folder to the list of Packages Sources in NuGet Package Manager. Build the project. 
 - Select CPU type Any CPU.
 - Insert the downloaded evaluation license as follows:
