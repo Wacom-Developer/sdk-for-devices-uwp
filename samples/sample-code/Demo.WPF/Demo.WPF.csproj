@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\ble.png" />
+    <None Remove="Resources\DiscreteDisplaySampleImage.png" />
+    <None Remove="Resources\hid.png" />
+    <None Remove="Resources\ser.png" />
+    <None Remove="Resources\usb.png" />
+    <None Remove="Resources\wac.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ToggleSwitch" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Wacom.Devices" Version="2.1.*-*" Condition="'$(SolutionName)' == 'cdl-dotnet-samples'" />
+    <ProjectReference Include="..\..\Wacom.Devices\Wacom.Devices.csproj" Condition="'$(SolutionName)' != 'cdl-dotnet-samples'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\DiscreteDisplaySampleImage.png" />
+    <Resource Include="Resources\hid.png" />
+    <Resource Include="Resources\ser.png" />
+    <Resource Include="Resources\wac.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\ble.png" />
+    <Resource Include="Resources\usb.png" />
+  </ItemGroup>
+
+</Project>
