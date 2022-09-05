@@ -1,0 +1,1 @@
+Place the Wacom.Devices and Wacom.Licensing nugets in this directory.
