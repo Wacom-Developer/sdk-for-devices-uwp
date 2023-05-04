@@ -25,7 +25,7 @@ The downloaded Zip file contains the SDK Nuget files (*.nupkg).
 
 ## Download an evaluation license
 
-If you have not been supplied one, a license string can be requested from signature-support@wacom.com.
+If you have not been supplied one, a license string can be requested from enterprise-support@wacom.com.
 
 Once the product has been released on DevRel:
 
