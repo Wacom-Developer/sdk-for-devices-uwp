@@ -20,7 +20,7 @@ namespace Demo.WPF
 	{
 		private readonly Wacom.Devices.IInkDeviceInfo _inkDeviceInfo;
 		private readonly SynchronizationContext _synchronizationContext;
-		private readonly CancellationTokenSource _cancellationToken = new();
+		private readonly CancellationTokenSource _cancellationToken = new CancellationTokenSource();
 
 		private Wacom.Devices.IDigitalInkDevice _digitalInkDevice;
 		private Wacom.Devices.IDesktopDisplayService _desktopDisplayService;
@@ -261,7 +261,7 @@ namespace Demo.WPF
 
 		#region DeviceProperties Tab
 
-		private ObservableCollection<DevicePropertyValue> _deviceProperties = new();
+		private ObservableCollection<DevicePropertyValue> _deviceProperties = new ObservableCollection<DevicePropertyValue>();
 
 		public ObservableCollection<DevicePropertyValue> DeviceWindow_DeviceProperties => _deviceProperties;
 
@@ -738,7 +738,7 @@ namespace Demo.WPF
 			}
 		}
 
-		private List<Wacom.Devices.RealTimePointReceivedEventArgs> _realTimeInk_PenData = new();
+		private List<Wacom.Devices.RealTimePointReceivedEventArgs> _realTimeInk_PenData = new List<Wacom.Devices.RealTimePointReceivedEventArgs>();
 		private Wacom.Devices.RealTimePointReceivedEventArgs _realTimeInk_PenData_Last;
 
 		public bool RealTimeInk_StartStop
@@ -865,7 +865,7 @@ namespace Demo.WPF
 				using var stream = File.CreateText(fileName);
 				stream.WriteLine("Timestamp,PointX,PointY,Phase,Pressure,PointDisplayX,PointDisplayY,PointRawX,PointRawY,PressureRaw,TimestampRaw,Sequence,Rotation,Azimuth,Altitude,TiltX,TiltY,PenId");
 
-				StringBuilder sb = new();
+				StringBuilder sb = new StringBuilder();
 				foreach (var item in _realTimeInk_PenData)
 				{
 					sb.Append($"{item.Timestamp.ToString("O")},{item.Point.X,6},{item.Point.Y,6},{item.Phase.ToString(),-11}");
@@ -999,8 +999,8 @@ namespace Demo.WPF
 			public string Description => (InkDocument != null) ? $"{InkDocument.CreationDate.ToString()} ({InkDocument.Layers.Count} layers, {TotalStrokesCount()} total strokes)" : _fileTransferException.Message;
 		};
 
-		private ObservableCollection<FileTransfer_InkDocumentItem> _fileTransfer_InkDocuments = new();
-		private ObservableCollection<InkDocumentViewModel> _fileTransfer_InkDocument = new();
+		private ObservableCollection<FileTransfer_InkDocumentItem> _fileTransfer_InkDocuments = new ObservableCollection<FileTransfer_InkDocumentItem>();
+		private ObservableCollection<InkDocumentViewModel> _fileTransfer_InkDocument = new ObservableCollection<InkDocumentViewModel>();
 		private string _fileTransfer_Message;
 		private int _fileTransfer_retryCounter = 0;
 

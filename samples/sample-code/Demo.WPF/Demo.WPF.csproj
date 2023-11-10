@@ -2,8 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
+    <TargetFramework Condition="$(VisualStudioVersion) &gt;= 17.0">net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework Condition="$(VisualStudioVersion) &lt; 17.0">net5.0-windows10.0.17763.0</TargetFramework>
+
     <UseWPF>true</UseWPF>
+
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,10 +21,11 @@
 
   <ItemGroup>
     <PackageReference Include="ToggleSwitch" Version="1.2.0" />
+    <PackageReference Include="Wacom.Devices" Version="2.1.2.19" />
+    <PackageReference Include="Wacom.Licensing" Version="2.1.2.19" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Wacom.Devices" Version="2.1.*-*" Condition="'$(SolutionName)' == 'cdl-dotnet-samples'" />
     <ProjectReference Include="..\..\Wacom.Devices\Wacom.Devices.csproj" Condition="'$(SolutionName)' != 'cdl-dotnet-samples'" />
   </ItemGroup>
 

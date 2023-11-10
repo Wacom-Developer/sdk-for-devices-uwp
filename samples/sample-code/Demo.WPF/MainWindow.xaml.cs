@@ -19,8 +19,8 @@ namespace Demo.WPF
 	public partial class MainWindow : Window
 	{
 		private readonly SynchronizationContext _synchronizationContext;
-		private List<Wacom.Devices.IInkDeviceWatcher> _inkDeviceWatchers = new();
-		private ObservableCollection<Connection> _connectionList = new();
+		private List<Wacom.Devices.IInkDeviceWatcher> _inkDeviceWatchers = new List<Wacom.Devices.IInkDeviceWatcher>();
+		private ObservableCollection<Connection> _connectionList = new ObservableCollection<Connection>();
 
 		#region Helpers
 		private Connection FindConnectionFromDeviceInfo(Wacom.Devices.IInkDeviceInfo e)
@@ -43,7 +43,7 @@ namespace Demo.WPF
 
 			void InitializeInkWatchers()
 			{
-				StringBuilder sb = new();
+				StringBuilder sb = new StringBuilder();
 				int countStarted = 0;
 				for (int i = 0; i < 3; ++i)
 				{
@@ -137,7 +137,7 @@ namespace Demo.WPF
 
 		private void LoadStream_Click(object sender, RoutedEventArgs e)
 		{
-			OpenFileDialog openFileDialog = new()
+			OpenFileDialog openFileDialog = new OpenFileDialog()
 			{
 				Title = "Open Stream",
 				CheckFileExists = true,
