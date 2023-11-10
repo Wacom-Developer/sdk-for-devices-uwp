@@ -1,9 +1,12 @@
 # Wacom Ink SDK for devices - Windows UWP
 
-## Version 2.1.1.16
+## Version 2.1.2.19
 
 ## History
 
+* Release v2.1.2.19 22 March 2023
+    *  Added support for Intuos Pro Medium
+  
 * Release v2.1.1.16 22 June 2022
     *  Minor bug fixes
 
