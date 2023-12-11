@@ -44,10 +44,6 @@ The license is supplied as a JWT text string in a text file. This will need to b
 application. The self-service evaluation licenses have a three-month expiry date from the time of
 creation. However you can generate a new license at any time.
 
-An evaluation license can be obtained here:
-
-NB: This license is only available for a limited time. 
-
 The license can be added by going into the appropriate CONFIG file and adding the license key in the value field.
 
 ```
