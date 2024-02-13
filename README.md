@@ -367,28 +367,29 @@ requested a subset of services. The actions cater for the states:
 | ENC Start | ENC Start              | ENC Start                                | RTS Stop <br> (DisableInking) <br> ENC Start <br> (EnableInking) <br> RTS Start | RTS Stop <br> (DisableInking) <br> ENC Start <br> (restore Inking) <br> RTS Start |                                                                                  |
 | ENC Stop  | ENC Stop               | ENC Start                                | RTS Stop <br> (DisableInking) <br> ENC Stop <br> (EnableInking) <br> RTS Start  | ENC Stop                                                                          | RTS Stop <br> (DisableInking) <br> ENC Stop <br> (restore Inking) <br> RTS Start |
 
-## Additional resources
 
-### Sample Code
-For further samples check Wacom's Developer additional samples, see
-https://github.com/Wacom-Developer
+# Additional resources 
 
-### Documentation
+## Sample Code
+For further samples check Wacom's Developer additional samples, see [https://github.com/Wacom-Developer](https://github.com/Wacom-Developer)
 
-For further details on using the SDK see Wacom Ink SDK for devices documentation
+## Documentation
+For further details on using the SDK see [Wacom Ink SDK for devices documentation](https://developer-docs.wacom.com/docs/overview/sdks/sdk-for-devices/) 
+
 The API Reference is available directly in the downloaded SDK.
 
-### Support
+## Support
+If you experience issues with the technology components, please see related [FAQs](https://developer-support.wacom.com/hc/en-us)
 
-If you experience issues with the technology components, please see related FAQs
-For further support file a ticket in our Developer Support Portal described here: Request Support
+For further support file a ticket in our **Developer Support Portal** described here: [Request Support](https://developer-support.wacom.com/hc/en-us/requests/new)
 
-### Developer Community
+## Developer Community 
 Join our developer community:
 
-- LinkedIn - Wacom for Developers
-- Twitter - Wacom for Developers
+- [LinkedIn - Wacom for Developers](https://www.linkedin.com/company/wacom-for-developers/)
+- [Twitter - Wacom for Developers](https://twitter.com/Wacomdevelopers)
 
-### License
+## License 
+This sample code is licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
 
-This sample code is licensed under the MIT License
+---
