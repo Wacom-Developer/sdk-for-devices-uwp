@@ -1,9 +1,9 @@
 # Wacom Ink SDK for devices for Windows 
 ## Introduction
 
-The WILL SDK for Devices acts as the bridge between hardware that is capable of capturing digital inking data, and our ink software ecosystem. The data that is produced by the WILL SDK for Devices can be used with Wacom WILL SDK for Ink libraries for lifelike rendering, although it should be noted that this library has no direct dependency on the WILL SDK for Ink.
+The Wacom Ink SDK for Devices acts as the bridge between hardware that is capable of capturing digital inking data, and our ink software ecosystem. The data that is produced by the Wacom Ink SDK for Devices can be used with Wacom Wacom Ink SDK for Ink libraries for lifelike rendering, although it should be noted that this library has no direct dependency on the Wacom Ink SDK for Ink.
 
-**NB: The Will SDK for Devices is sometimes referred to as the Common Device Library or CDL.**
+**NB: The Wacom Ink SDK for Devices is sometimes referred to as the Common Device Library or CDL.**
 
 The SDK has four simple core concepts:
 
