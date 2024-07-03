@@ -11,15 +11,12 @@ Install Wacom Driver 6.3.42 or higher for Intuos, DTU and Cintiq support.
 
 ## Download the CDL SDK
 
-Unzip the SDK NuGet files (*.nupkg). 
+Download the SDK from https://developer.wacom.com/developer-dashboard
 
-Once the product has been released on DevRel:
-
-- Download the SDK from https://developer.wacom.com/developer-dashboard
-- Login using your Wacom ID
-- Select Downloads for devices
-- Download Wacom Ink SDK for devices for Windows .NET
-- Accept the End User License Agreement to use the SDK
+* Login using your Wacom ID
+* Navigate to **Downloads for devices**
+* Select **More info** on **WILL SDK for ink for devices for Windows 10 (UWP)**
+* Accept the End User License Agreement and select **Download** to use the SDK
 
 The downloaded Zip file contains the SDK Nuget files (*.nupkg).
 
