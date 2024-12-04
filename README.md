@@ -1,4 +1,8 @@
 # Wacom Ink SDK for devices for Windows 
+
+> **Important Note:**
+> This series of Wacom products is due to be discontinued soon. Support for them will no longer be offered. 
+
 ## Introduction
 
 The Wacom Ink SDK for Devices acts as the bridge between hardware that is capable of capturing digital inking data, and our ink software ecosystem. The data that is produced by the Wacom Ink SDK for Devices can be used with Wacom Wacom Ink SDK for Ink libraries for lifelike rendering, although it should be noted that this library has no direct dependency on the Wacom Ink SDK for Ink.
